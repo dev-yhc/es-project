@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: es_project
+  elasticsearch:
+    uris: localhost:9200
+    username: elastic
+    password: changeme
