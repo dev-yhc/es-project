@@ -1,58 +1,58 @@
 package com.yhc.es_project.domain.entity
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.elasticsearch.annotations.DateFormat
 import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
 import org.springframework.data.elasticsearch.annotations.FieldType
-import java.util.*
-
+import java.time.LocalDate
 
 @Document(indexName = "lawsuit")
-class Lawsuit {
+data class Lawsuit(
     @Id
-    private val id: String? = null
+    val id: String? = null,
 
     @Field(type = FieldType.Keyword)
-    private val caseNumber: String? = null
+    val caseNumber: String? = null,
 
     @Field(type = FieldType.Keyword)
-    private val court: String? = null
+    val court: String? = null,
 
-    @Field(type = FieldType.Date)
-    private val date: Date? = null
-
-    @Field(type = FieldType.Keyword)
-    private val caseType: String? = null
+    @Field(type = FieldType.Date, format = [DateFormat.date])
+    val date: LocalDate? = null,
 
     @Field(type = FieldType.Keyword)
-    private val judges: String? = null
+    val caseType: String? = null,
+
+    @Field(type = FieldType.Keyword)
+    val judges: String? = null,
 
     @Field(type = FieldType.Nested)
-    private val parties: Parties? = null
+    val parties: Parties? = null,
 
     @Field(type = FieldType.Text)
-    private val summary: String? = null
+    val summary: String? = null,
 
     @Field(type = FieldType.Text)
-    private val fullText: String? = null
+    val fullText: String? = null,
 
     @Field(type = FieldType.Keyword)
-    private val keywords: List<String>? = null
+    val keywords: List<String>? = null,
 
     @Field(type = FieldType.Keyword)
-    private val precedents: List<String>? = null
+    val precedents: List<String>? = null,
 
     @Field(type = FieldType.Keyword)
-    private val ruling: String? = null
+    val ruling: String? = null,
 
     @Field(type = FieldType.Text)
-    private val lawsCited: List<String>? = null // Getters and setters
-}
+    val lawsCited: List<String>? = null
+)
 
-internal class Parties {
+data class Parties(
     @Field(type = FieldType.Text)
-    private val plaintiff: String? = null
+    val plaintiff: String? = null,
 
     @Field(type = FieldType.Text)
-    private val defendant: String? = null // Getters and setters
-}
+    val defendant: String? = null
+)
